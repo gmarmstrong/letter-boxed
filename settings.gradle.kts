@@ -1,0 +1,3 @@
+
+rootProject.name = "letter-boxed"
+
