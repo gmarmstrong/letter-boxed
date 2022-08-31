@@ -26,7 +26,6 @@ private fun parseEdges(input: String): Set<Set<Char>> {
         .toSet()
 }
 
-@Throws(NotImplementedError::class)
 fun solve(
     puzzle: Puzzle,
     maxWords: Int,
