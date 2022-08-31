@@ -1,6 +1,6 @@
 class Puzzle {
     // edges is a list of 4 strings, each containing 3 unique characters
-    var edges: Set<Set<Char>> = mutableSetOf()
+    val edges: Set<Set<Char>>
 
     constructor(edges: Set<Set<Char>>) {
         // Establish requirements for puzzle dimensions
