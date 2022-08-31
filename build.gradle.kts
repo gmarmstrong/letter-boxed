@@ -7,7 +7,6 @@ group = "dev.gmarmstrong"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    jcenter()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
 }
