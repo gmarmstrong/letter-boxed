@@ -1,3 +1,6 @@
+/**
+ * Represents a Letter Boxed puzzle configuration.
+ */
 class Puzzle {
     /** edges should be a set of 4 sets of 3 uppercase Latin letters. */
     val edges: Set<Set<Char>>
