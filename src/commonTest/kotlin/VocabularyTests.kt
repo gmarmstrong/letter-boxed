@@ -57,7 +57,6 @@ class InvalidForPuzzleTests {
 
     @Test
     fun testAppliedValidityUnusableLetter() {
-        val puzzle = Puzzle(abcSeed)
         assertEquals(false, isValidForPuzzle("RECOGNIZE", abcPuzzle))
     }
 }
