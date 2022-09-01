@@ -1,15 +1,15 @@
 /**
  * Filters a list of words to remove words that could never be legal in any solution.
  */
-fun pruneGenerally(words: List<String>): List<String> {
-    return words.filter { isSyntacticallyValid(it) }
+fun pruneGenerally(words: MutableSet<String>) {
+    words.retainAll { isSyntacticallyValid(it) }
 }
 
 /**
  * Filters a list of words to remove words that could never be valid for the given targetPuzzle.
  */
-fun pruneForPuzzle(words: List<String>, targetPuzzle: Puzzle): List<String> {
-    return words.filter { isSyntacticallyValid(it) }
+fun pruneForPuzzle(words: MutableSet<String>, targetPuzzle: Puzzle) {
+    words.retainAll { isValidForPuzzle(it, targetPuzzle) }
 }
 
 /**
