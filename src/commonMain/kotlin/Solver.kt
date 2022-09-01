@@ -45,7 +45,7 @@ fun String.alternatesEdges(edges: Set<Set<Char>>): Boolean {
 }
 
 /** Checks that a string only uses characters from a set of characters. */
-fun String.usesAlphabet(chars: Set<Char>): Boolean = this.all { it in chars }
+fun String.usesAlphabet(chars: Set<Char>): Boolean = this.all { it.uppercaseChar() in chars }
 
 /** Checks that a list of strings only uses characters from a set of characters. */
 private fun List<String>.usesAlphabet(chars: Set<Char>): Boolean = this.all { it.usesAlphabet(chars) }
