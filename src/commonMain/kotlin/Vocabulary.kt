@@ -13,18 +13,20 @@ fun pruneForPuzzle(words: MutableSet<String>, targetPuzzle: Puzzle) {
 }
 
 /**
- * Checks if a word is syntactically valid.
+ * Checks if a word is syntactically valid. That is, that the word is at least three characters long,
+ * contains only ASCII letters (case-insensitive), and contains no consecutive duplicate letters (e.g., "egg" fails
+ * because it contains "gg").
  */
 fun isSyntacticallyValid(word: String): Boolean {
-    // Check that the word is at least 3 characters long.
+    // Check word length
     if (word.length < 3) {
         return false
     }
-    // Check that all characters are letters.
-    if (!word.all { it.isLetter() }) {
+    // Check that all characters are ASCII letters
+    if (!word.all { it in 'A'..'z' }) {
         return false
     }
-    // Check that the word contains no repeated consecutive letters (e.g., "egg" fails because it contains "gg").
+    // Check that the word contains no consecutive duplicate letters
     return word.lowercase().zipWithNext().none { it.first == it.second }
 }
 
