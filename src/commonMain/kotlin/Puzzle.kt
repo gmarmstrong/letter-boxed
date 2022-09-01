@@ -20,12 +20,14 @@ class Puzzle {
         require(edges.all { it.size == 3 }) { "Each edge must be exactly 3 unique characters" }
         // Establish requirements for characters (one of the 26 uppercase Latin letters)
         require(edges.all { edge -> edge.all { it in 'A'..'Z' } }) { "Each edge must contain only uppercase Latin letters" }
+        // Establish requirements for uniqueness of characters
+        require(edges.flatten().toSet().size == 12) { "Puzzle must consist of exactly 12 unique characters" }
         // Set puzzle edges
         this.edges = edges
     }
 
     /**
-     * Constructs a puzzle from a string of comma-separated of edges.
+     * Constructs a puzzle from a string of comma-separated of edges. Letters are converted to uppercase.
      *
      * @throws IllegalArgumentException if the string is not a valid puzzle.
      */
