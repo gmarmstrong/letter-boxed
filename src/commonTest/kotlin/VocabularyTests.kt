@@ -35,6 +35,17 @@ class InvalidSyntaxTests {
     fun testValidityHyphen() = assertEquals(false, isSyntacticallyValid("corn-fed"))
 }
 
+class ValidForPuzzleTests {
+    private val abcSeed = "ABC,DEF,GHI,JKL"
+    private val abcPuzzle = Puzzle(abcSeed)
+
+    @Test
+    fun testAppliedValidityCorrect() = assertEquals(true, isValidForPuzzle("KALE", abcPuzzle))
+
+    @Test
+    fun testAppliedValidityIgnoreCase() = assertEquals(true, isValidForPuzzle("kaLE", abcPuzzle))
+}
+
 class InvalidForPuzzleTests {
     private val abcSeed = "ABC,DEF,GHI,JKL"
     private val abcPuzzle = Puzzle(abcSeed)
