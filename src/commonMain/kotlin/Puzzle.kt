@@ -32,6 +32,11 @@ class Puzzle {
 
     // Define Puzzle hashCode by hashCode of edges.
     override fun hashCode(): Int = edges.hashCode()
+
+    // Define Puzzle toString by concatenating edges.
+    override fun toString(): String = edges.joinToString(separator = ",") { edge -> edge.joinToString(separator = "") }
+
+
 }
 
 /**
