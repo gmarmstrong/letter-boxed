@@ -32,7 +32,8 @@ private fun isSyntacticallyValid(word: String): Boolean {
  * Checks if a word is valid for the given targetPuzzle. Assumes isSyntacticallyValid(word) is true.
  */
 private fun isValidForPuzzle(word: String, targetPuzzle: Puzzle): Boolean {
-    // TODO Check that the word contains only letters that are in the targetPuzzle.
-    // TODO Check that each letter alternates between edges of the puzzle.
-    throw NotImplementedError()
+    if (!word.usesAlphabet(targetPuzzle.letters)) {
+        return false
+    }
+    TODO("Check that each letter alternates between edges of the puzzle.")
 }
