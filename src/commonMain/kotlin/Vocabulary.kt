@@ -35,5 +35,8 @@ private fun isValidForPuzzle(word: String, targetPuzzle: Puzzle): Boolean {
     if (!word.usesAlphabet(targetPuzzle.letters)) {
         return false
     }
-    TODO("Check that each letter alternates between edges of the puzzle.")
+    if (!word.alternatesEdges(targetPuzzle.edges)) {
+        return false
+    }
+    return true
 }

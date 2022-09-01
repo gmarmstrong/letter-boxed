@@ -32,6 +32,18 @@ class Solver(wordsSource: WordsSource) {
     }
 }
 
+/** Checks that each character in a string is on a different edge than the previous character. */
+fun String.alternatesEdges(edges: Set<Set<Char>>): Boolean {
+    for ((first, second) in this.zipWithNext()) {
+        val firstEdge = edges.find { it.contains(first) }
+        val secondEdge = edges.find { it.contains(second) }
+        if (firstEdge == secondEdge) {
+            return false
+        }
+    }
+    return true
+}
+
 /** Checks that a string only uses characters from a set of characters. */
 fun String.usesAlphabet(chars: Set<Char>): Boolean = this.all { it in chars }
 
