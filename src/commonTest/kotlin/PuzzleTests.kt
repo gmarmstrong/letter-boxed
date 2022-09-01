@@ -3,12 +3,14 @@ import kotlin.test.assertEquals
 
 class PuzzleTests {
     /**
-     * Test that comma-separated seeds are equivalent to string-list seeds.
+     * Test that Puzzles made from comma-separated seeds are equivalent to Puzzles made from set-based seeds.
+     *
+     * @see parseEdges
      */
     @Test
     fun testEdgeDefinitionFlexible() {
-        val seedA = "RME,WCL,KGT,IPA"
-        val seedB = listOf("RME", "WCL", "KGT", "IPA")
-        assertEquals(Puzzle(seedA), Puzzle(seedB))
+        val seedString = "ABC,DEF,GHI,JKL"
+        val seedSet = seedString.split(",").map { it.toSet() }.toSet()
+        assertEquals(Puzzle(seedString), Puzzle(seedSet))
     }
 }
