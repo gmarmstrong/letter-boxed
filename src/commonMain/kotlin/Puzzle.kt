@@ -1,8 +1,13 @@
 class Puzzle {
-    // edges is a list of 4 strings, each containing 3 unique characters
+    /** edges should be a set of 4 sets of 3 uppercase Latin letters. */
     val edges: Set<Set<Char>>
 
-    /** Constructs a puzzle from a set of 4 sets of 3 uppercase Latin letters. */
+    /**
+     * Constructs a puzzle from the given edges.
+     *
+     * @throws IllegalArgumentException if the edges do not form a valid puzzle.
+     */
+    @Throws(IllegalArgumentException::class)
     constructor(edges: Set<Set<Char>>) {
         // Establish requirements for puzzle dimensions
         require(edges.size == 4) { "Puzzle must have exactly 4 unique edges" }
@@ -13,7 +18,11 @@ class Puzzle {
         this.edges = edges
     }
 
-    /** Constructs a puzzle from a string of comma-separated of edges. */
+    /**
+     * Constructs a puzzle from a string of comma-separated of edges.
+     *
+     * @throws IllegalArgumentException if the string is not a valid puzzle.
+     */
     constructor(input: String) : this(parseEdges(input))
 
     // Define Puzzle equality by equality of edges.
@@ -37,11 +46,4 @@ private fun parseEdges(input: String): Set<Set<Char>> {
         .split(",")
         .map { it.toSet() }
         .toSet()
-}
-
-fun solve(
-    puzzle: Puzzle,
-    maxWords: Int,
-): Sequence<Sequence<String>> {
-    throw NotImplementedError()
 }
