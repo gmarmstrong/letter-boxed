@@ -15,7 +15,7 @@ fun pruneForPuzzle(words: MutableSet<String>, targetPuzzle: Puzzle) {
 /**
  * Checks if a word is syntactically valid.
  */
-private fun isSyntacticallyValid(word: String): Boolean {
+fun isSyntacticallyValid(word: String): Boolean {
     // Check that the word is at least 3 characters long.
     if (word.length < 3) {
         return false
@@ -31,7 +31,7 @@ private fun isSyntacticallyValid(word: String): Boolean {
 /**
  * Checks if a word is valid for the given targetPuzzle. Assumes isSyntacticallyValid(word) is true.
  */
-private fun isValidForPuzzle(word: String, targetPuzzle: Puzzle): Boolean {
+fun isValidForPuzzle(word: String, targetPuzzle: Puzzle): Boolean {
     if (!word.usesAlphabet(targetPuzzle.letters)) {
         return false
     }
