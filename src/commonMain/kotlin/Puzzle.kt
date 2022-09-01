@@ -2,6 +2,9 @@ class Puzzle {
     /** edges should be a set of 4 sets of 3 uppercase Latin letters. */
     val edges: Set<Set<Char>>
 
+    val letters: Set<Char>
+        get() = edges.flatten().toSet()
+
     /**
      * Constructs a puzzle from the given edges.
      *
@@ -35,7 +38,6 @@ class Puzzle {
 
     // Define Puzzle toString by concatenating edges.
     override fun toString(): String = edges.joinToString(separator = ",") { edge -> edge.joinToString(separator = "") }
-
 
 }
 
