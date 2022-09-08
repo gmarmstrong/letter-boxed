@@ -8,11 +8,12 @@ class Solver(wordsSource: WordsSource) {
 
     init {
         words = wordsSource.getWords()
-        pruneGenerally(words)
+        // Filters a list of words to remove words that could never be legal in any solution.
+        words.retainAll { isSyntacticallyValid(it) }
     }
 
     fun solve(puzzle: Puzzle): List<List<String>> {
-        pruneForPuzzle(words, puzzle)
+        words.retainAll { isValidForPuzzle(it, puzzle) }
         val attempts = permutations(words.toList(), length = solutionSteps)
         return attempts.filter { isSolution(it, puzzle) }
     }

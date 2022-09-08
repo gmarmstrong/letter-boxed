@@ -1,18 +1,4 @@
 /**
- * Filters a list of words to remove words that could never be legal in any solution.
- */
-fun pruneGenerally(words: MutableSet<String>) {
-    words.retainAll { isSyntacticallyValid(it) }
-}
-
-/**
- * Filters a list of words to remove words that could never be valid for the given targetPuzzle.
- */
-fun pruneForPuzzle(words: MutableSet<String>, targetPuzzle: Puzzle) {
-    words.retainAll { isValidForPuzzle(it, targetPuzzle) }
-}
-
-/**
  * Checks if a word is syntactically valid. That is, that the word is at least three characters long,
  * contains only ASCII letters (case-insensitive), and contains no consecutive duplicate letters (e.g., "egg" fails
  * because it contains "gg").
