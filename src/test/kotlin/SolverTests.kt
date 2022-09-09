@@ -52,7 +52,6 @@ class SolverTests {
         val puzzle = Puzzle("ADR,MEO,BXU,ITS")
         val oneSolver = Solver(wordSource, 1)
         val solutions = oneSolver.solve(puzzle)
-        solutions.forEach(::println)
         assertContains(solutions, listOf("ambidextrous"), "ADR,MEO,BXU,ITS puzzle should have solution: ambidextrous")
     }
 
@@ -71,7 +70,6 @@ class SolverTests {
         val puzzle = Puzzle("AEI,BFJ,CGK,DHL")
         val oneSolver = Solver(customWordSource, 1)
         val solutions = oneSolver.solve(puzzle)
-        solutions.map { it.toString() }.forEach(::println)
         assertContains(solutions, listOf("abcdefghijkla"), "AEI,BFJ,CGK,DHL puzzle should have solution: abcdefghijkla")
     }
 
@@ -80,7 +78,6 @@ class SolverTests {
         val puzzle = Puzzle("QRE,LOU,IAY,CNG")
         val threeSolver = Solver(wordSource, 3)
         val solutions = threeSolver.solve(puzzle)
-        solutions.forEach(::println)
         assertTrue(solutions.isNotEmpty())
     }
 }
