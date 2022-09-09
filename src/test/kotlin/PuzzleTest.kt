@@ -24,10 +24,8 @@ internal class PuzzleTest {
 
     @Test
     fun testLetters() {
-    }
-
-    @Test
-    fun testCopy() {
+        val expected = "ABCDEFGHIJKL".toSet()
+        assertEquals(puzzle.letters, expected, "Puzzle should have letters A through L")
     }
 
     @Test
@@ -35,10 +33,8 @@ internal class PuzzleTest {
     }
 
     @Test
-    fun testHashCode() {
-    }
-
-    @Test
     fun testToString() {
+        val expected = "ABC,DEF,GHI,JKL"
+        assertEquals(expected, puzzle.toString())
     }
 }
