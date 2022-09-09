@@ -1,29 +1,16 @@
 /**
  * Represents a Letter Boxed puzzle configuration.
  */
-class Puzzle {
-    /** edges should be a set of 4 sets of 3 uppercase Latin letters. */
-    val edges: Set<Set<Char>>
+data class Puzzle(val edges: Set<Set<Char>>) {
 
     val letters: Set<Char>
         get() = edges.flatten().toSet()
 
-    /**
-     * Constructs a puzzle from the given edges.
-     *
-     * @throws IllegalArgumentException if the edges do not form a valid puzzle.
-     */
-    @Throws(IllegalArgumentException::class)
-    constructor(edges: Set<Set<Char>>) {
-        // Establish requirements for puzzle dimensions
+    init {
         require(edges.size == 4) { "Puzzle must have exactly 4 unique edges" }
         require(edges.all { it.size == 3 }) { "Each edge must be exactly 3 unique characters" }
-        // Establish requirements for characters (one of the 26 uppercase Latin letters)
         require(edges.all { edge -> edge.all { it in 'A'..'Z' } }) { "Each edge must contain only uppercase Latin letters" }
-        // Establish requirements for uniqueness of characters
         require(edges.flatten().toSet().size == 12) { "Puzzle must consist of exactly 12 unique characters" }
-        // Set puzzle edges
-        this.edges = edges
     }
 
     /**
@@ -50,7 +37,7 @@ class Puzzle {
  * Parses a string of comma-separated edges into a set of sets of characters.
  * Also converts all letters to uppercase (Turkish-I problem avoided by the requirement of uppercase ASCII letters).
  *
- * For example, "ABC,DEF,GHI,JKL" becomes { {"A", "B", "C"}, {"D", "E", "F"}, {"G", "H", "I"}, {"J", "K", "L"} }.
+ * For example, "ABC,DEF,GHI,JKL" becomes { {'A', 'B', 'C'}, {'D', 'E', 'F'}, {'G', 'H', 'I'}, {'J', 'K', 'L'} }.
  */
 private fun parseEdges(input: String): Set<Set<Char>> {
     return input
