@@ -4,3 +4,20 @@
 
 _letter-boxed_ is a puzzle solver for the New York
 Times's game, [_Letter Boxed_](https://www.nytimes.com/puzzles/letter-boxed).
+
+## Usage
+
+_letter-boxed_ is a command-line program. It takes a list of letters
+as arguments and treats them as the structure of a Letter Boxed puzzle.
+For example, to solve the puzzle "RME,WCL,KGT,IPA", you would run:
+
+```bash
+$ ./gradlew run --quiet --args='RME,WCL,KGT,IPA'
+[wigwam, marketplace]
+$ ./gradlew run --quiet --args='LWC,GTK,ERM,PIA'
+[wigwam, marketplace]
+$ ./gradlew run --quiet --args='BGY,ULN,MIS,TOK'
+[yolks, stumbling]
+$ ./gradlew run --quiet --args='ABC,DEF,GHI,JKL'
+# No solutions using the words.txt vocabulary, so no output is produced.
+```
