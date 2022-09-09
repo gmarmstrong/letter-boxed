@@ -6,8 +6,8 @@ class WordsSourceImplTests {
     fun returnWordsFromFile() {
         val wordsSource = WordsSourceImpl
         val words = wordsSource.getWords()
-        assertTrue(words.size > 100)
-        assertTrue(words.contains("hello"))
-        assertTrue(words.contains("world"))
+        assertTrue(words.size > 100, "WordsSource should return more than 100 words")
+        assertTrue(words.contains("hello"), """Strings should include "hello"""")
+        assertTrue(words.contains("world"), """Strings should include "world"""")
     }
 }
