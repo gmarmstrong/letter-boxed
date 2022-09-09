@@ -19,25 +19,23 @@ class Solver(wordsSource: WordsSource) {
     }
 
     infix fun List<String>.solves(puzzle: Puzzle): Boolean {
-        // Checks that the solution has the correct number of words.
-        if (this.size != solutionSteps) {
-            return false
-        }
-        // Checks that only letters from the puzzle are used, and that all the letters are used at least once.
-        if (!this.usesAlphabet(puzzle.letters)) {
-            return false
-        }
-        if (!this.fulfillsAlphabet(puzzle.letters)) {
-            return false
-        }
-        // Checks that the last letter of each word is the same as the first letter of the next word.
-        for ((a, b) in this.zipWithNext()) {
-            if (a.last().uppercaseChar() != b.first().uppercaseChar()) {
-                return false
-            }
-        }
-        return true
+        return size == solutionSteps &&
+                usesAlphabet(puzzle.letters) &&
+                fulfillsAlphabet(puzzle.letters) &&
+                lettersConnected()
     }
+}
+
+/**
+ * Checks that the last letter of each word is the same as the first letter of the next word.
+ */
+fun List<String>.lettersConnected(): Boolean {
+    for ((a, b) in this.zipWithNext()) {
+        if (a.last().uppercaseChar() != b.first().uppercaseChar()) {
+            return false
+        }
+    }
+    return true
 }
 
 /** Checks that each character in a string is on a different edge than the previous character. */
