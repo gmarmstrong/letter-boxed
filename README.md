@@ -1,6 +1,7 @@
 # _letter-boxed_
 
 ![GitHub](https://img.shields.io/github/license/gmarmstrong/letter-boxed)
+[![Gradle build](https://github.com/gmarmstrong/letter-boxed/actions/workflows/gradle.yml/badge.svg)](https://github.com/gmarmstrong/letter-boxed/actions/workflows/gradle.yml)
 
 _letter-boxed_ is a puzzle solver for the New York
 Times's game, [_Letter Boxed_](https://www.nytimes.com/puzzles/letter-boxed).
