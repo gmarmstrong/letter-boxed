@@ -4,10 +4,9 @@
 class Solver(wordsSource: WordsSource) {
     var solutionSteps = 2
 
-    val words: MutableSet<String>
+    val words: MutableSet<String> = wordsSource.getWords()
 
     init {
-        words = wordsSource.getWords()
         // Filters a list of words to remove words that could never be legal in any solution.
         words.retainAll { isSyntacticallyValid(it) }
     }
