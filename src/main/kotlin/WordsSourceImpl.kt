@@ -1,5 +1,8 @@
 import java.io.File
 
+/**
+ * JVM implementation of [WordsSource].
+ */
 object WordsSourceImpl: WordsSource() {
     private const val WORDS_FILE_NAME = "words.txt"
 
