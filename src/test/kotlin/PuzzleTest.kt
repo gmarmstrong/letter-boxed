@@ -30,6 +30,14 @@ internal class PuzzleTest {
 
     @Test
     fun testEquals() {
+        val puzzle2 = Puzzle("ABC,DEF,GHI,JKL")
+        assertEquals(puzzle, puzzle2, "Puzzles should be equal")
+    }
+
+    @Test
+    fun testHashCode() {
+        val puzzle2 = Puzzle("ABC,DEF,GHI,JKL")
+        assertEquals(puzzle.hashCode(), puzzle2.hashCode(), "Puzzles should have same hash code")
     }
 
     @Test
