@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import kotlin.test.assertContains
 
 class SolverTests {
     private val puzzle = Puzzle("QRE,LOU,IAY,CNG")
@@ -31,7 +32,7 @@ class SolverTests {
     fun testQreSolutions() {
         val qreSolutions = solver.solve(puzzle)
         assertTrue(qreSolutions.isNotEmpty(), "QRE puzzle should have solutions")
-        assertTrue(qreSolutions.contains(qreSolution), "QRE puzzle should have solution $qreSolution")
+        assertContains(qreSolutions, qreSolution, "QRE puzzle should have solution $qreSolution")
         with(solver) {
             qreSolutions.forEach {
                 assertTrue(it solves puzzle, "QRE puzzle should be solved by $it")
@@ -52,11 +53,30 @@ class SolverTests {
         val oneSolver = Solver(wordSource, 1)
         val solutions = oneSolver.solve(puzzle)
         solutions.forEach(::println)
-        assertTrue(solutions.contains(listOf("ambidextrous")), "ADR,MEO,BXU,ITS puzzle should have solution: ambidextrous")
+        assertContains(solutions, listOf("ambidextrous"), "ADR,MEO,BXU,ITS puzzle should have solution: ambidextrous")
+    }
+
+    /**
+     * Tests that the solver can do 1-solves for solutions which start
+     * and end with the same letter. Specifically, this tests a possible
+     * edge case of [alternatesEdges] implementations.
+     */
+    @Test
+    fun testSolverOneStepEqualEnds() {
+        val customWordSource = object : WordsSource() {
+            override fun getWords(): MutableSet<String> {
+                return mutableSetOf("abcdefghijkla")
+            }
+        }
+        val puzzle = Puzzle("AEI,BFJ,CGK,DHL")
+        val oneSolver = Solver(customWordSource, 1)
+        val solutions = oneSolver.solve(puzzle)
+        solutions.map { it.toString() }.forEach(::println)
+        assertContains(solutions, listOf("abcdefghijkla"), "AEI,BFJ,CGK,DHL puzzle should have solution: abcdefghijkla")
     }
 
     @Test
-    @Disabled // FIXME fails (slowly) with OutOfMemoryError
+    @Disabled("Fails (slowly) with OutOfMemoryError")
     fun testSolverThreeSteps() {
         val puzzle = Puzzle("QRE,LOU,IAY,CNG")
         val threeSolver = Solver(wordSource, 3)
