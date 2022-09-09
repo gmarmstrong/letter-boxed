@@ -1,8 +1,7 @@
 /**
  * Logic for solving the puzzles.
  */
-class Solver(wordsSource: WordsSource) {
-    var solutionSteps = 2
+class Solver(wordsSource: WordsSource, private val solutionSteps: Int = 2) {
 
     val words: MutableSet<String> = wordsSource.getWords()
 

@@ -1,3 +1,4 @@
+
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
@@ -8,7 +9,8 @@ class SolverTests {
     private val abcPuzzle = Puzzle("ABC,DEF,GHI,JKL")
     private val qreSolution = listOf("uniquely", "Yogacara")
     private val qreBadSolution = listOf("car", "rogue")
-    private val solver = Solver(WordsSourceImpl)
+    private val wordSource = WordsSourceImpl()
+    private val solver = Solver(wordSource)
 
     @Test
     fun testSolvesQre() = with(solver) {
@@ -47,20 +49,18 @@ class SolverTests {
     fun testSolverOneStep() {
         // Shuffle any 12-letter heterogram: https://en.wikipedia.org/wiki/Heterogram_(literature)#12_letters
         val puzzle = Puzzle("ADR,MEO,BXU,ITS")
-        val oneSolver = Solver(WordsSourceImpl)
-        oneSolver.solutionSteps = 1
+        val oneSolver = Solver(wordSource, 1)
         val solutions = oneSolver.solve(puzzle)
         solutions.forEach(::println)
-        assertTrue(solutions.isNotEmpty(), "ADR,MEO,BXU,ITS puzzle should have a solution: ambidextrous")
+        assertTrue(solutions.contains(listOf("ambidextrous")), "ADR,MEO,BXU,ITS puzzle should have solution: ambidextrous")
     }
 
     @Test
     @Disabled // FIXME fails (slowly) with OutOfMemoryError
     fun testSolverThreeSteps() {
         val puzzle = Puzzle("QRE,LOU,IAY,CNG")
-        val threeSolver = Solver(WordsSourceImpl)
-        threeSolver.solutionSteps = 3
+        val threeSolver = Solver(wordSource, 3)
         val solutions = threeSolver.solve(puzzle)
-        println(solutions)
+        assertTrue(solutions.isNotEmpty())
     }
 }

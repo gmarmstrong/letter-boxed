@@ -1,15 +1,21 @@
 import java.io.File
+import java.net.URL
 
 /**
  * JVM implementation of [WordsSource].
+ *
+ * @param[resourceName] Name of the resource to read line-by-line from.
  */
-object WordsSourceImpl: WordsSource() {
-    private const val WORDS_FILE_NAME = "words.txt"
+class WordsSourceImpl(private val resourceName: String = "words.txt") : WordsSource() {
 
-    override fun getWords(): MutableSet<String> {
-        val wordsResourceURL = WordsSourceImpl::class.java.getResource(WORDS_FILE_NAME)
-            ?: throw IllegalStateException("Words file not found")
-        val wordsFilePath = wordsResourceURL.file
-        return File(wordsFilePath).readLines().toMutableSet()
+    private val file: File
+
+    init {
+        val resourceURL: URL = WordsSourceImpl::class.java.getResource(resourceName)
+            ?: throw IllegalStateException("Could not get resource '$resourceName'")
+        val resourcePath = resourceURL.path
+        file = File(resourcePath)
     }
+
+    override fun getWords(): MutableSet<String> = file.readLines().toMutableSet()
 }
