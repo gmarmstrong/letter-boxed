@@ -1,4 +1,4 @@
-# _letter-boxed_
+# Letter Boxed puzzle solver
 
 ![GitHub](https://img.shields.io/github/license/gmarmstrong/letter-boxed)
 [![Gradle build](https://github.com/gmarmstrong/letter-boxed/actions/workflows/gradle.yml/badge.svg)](https://github.com/gmarmstrong/letter-boxed/actions/workflows/gradle.yml)
@@ -20,7 +20,7 @@ $ ./gradlew run --quiet --args='LWC,GTK,ERM,PIA'
 $ ./gradlew run --quiet --args='BGY,ULN,MIS,TOK'
 [yolks, stumbling]
 $ ./gradlew run --quiet --args='ABC,DEF,GHI,JKL'
-# No solutions using the words.txt vocabulary, so no output is produced.
+$ # No solutions using the words.txt vocabulary, so no output is produced.
 $ ./gradlew run --quiet --args='RAP,TZV,INE,OLH'
 [helper, revitalization]
 [pother, revitalization]
