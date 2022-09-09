@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class SolverTests {
@@ -40,5 +41,26 @@ class SolverTests {
     fun testSolverSolveImpossible() {
         val abcSolutions = solver.solve(abcPuzzle)
         assertTrue(abcSolutions.isEmpty(), "ABC puzzle should have no solutions")
+    }
+
+    @Test
+    fun testSolverOneStep() {
+        // Shuffle any 12-letter heterogram: https://en.wikipedia.org/wiki/Heterogram_(literature)#12_letters
+        val puzzle = Puzzle("ADR,MEO,BXU,ITS")
+        val oneSolver = Solver(WordsSourceImpl)
+        oneSolver.solutionSteps = 1
+        val solutions = oneSolver.solve(puzzle)
+        solutions.forEach(::println)
+        assertTrue(solutions.isNotEmpty(), "ADR,MEO,BXU,ITS puzzle should have a solution: ambidextrous")
+    }
+
+    @Test
+    @Disabled // FIXME fails (slowly) with OutOfMemoryError
+    fun testSolverThreeSteps() {
+        val puzzle = Puzzle("QRE,LOU,IAY,CNG")
+        val threeSolver = Solver(WordsSourceImpl)
+        threeSolver.solutionSteps = 3
+        val solutions = threeSolver.solve(puzzle)
+        println(solutions)
     }
 }
