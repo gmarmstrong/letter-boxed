@@ -1,9 +1,7 @@
-import kotlin.test.Test
-import kotlin.test.assertContains
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 
-// This arguably belongs in commonTest, but it currently depends on the JVM for WordsSourceImpl.
 class SolverTests {
     private val seed = "QRE,LOU,IAY,CNG"
     private val puzzle = Puzzle(seed)
@@ -22,7 +20,7 @@ class SolverTests {
         val solver = Solver(WordsSourceImpl)
         val solutions = solver.solve(puzzle)
         assertTrue(solutions.isNotEmpty(), "No solutions found")
-        assertContains(solutions, listOf("uniquely", "Yogacara"))
+        assertTrue(solutions.contains(listOf("uniquely", "Yogacara")))
         for (solution in solutions) {
             assertTrue(solver.isSolution(solution, puzzle), "Not all of these solutions are valid")
         }
