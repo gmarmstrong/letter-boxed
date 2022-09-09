@@ -17,13 +17,9 @@ class AppliedValidityTests {
     fun testAppliedValidityIgnoreCase() = Assertions.assertTrue(isValidForPuzzle("kaLE", abcPuzzle))
 
     @Test
-    fun testAppliedValidityRepeatsEdge() {
-        Assertions.assertFalse(isValidForPuzzle("BAKE", abcPuzzle))
-    }
+    fun testAppliedValidityRepeatsEdge() = Assertions.assertFalse(isValidForPuzzle("BAKE", abcPuzzle))
 
     @Test
-    fun testAppliedValidityUnusableLetter() {
-        Assertions.assertFalse(isValidForPuzzle("RECOGNIZE", abcPuzzle))
-    }
+    fun testAppliedValidityUnusableLetter() = Assertions.assertFalse(isValidForPuzzle("RECOGNIZE", abcPuzzle))
 
 }

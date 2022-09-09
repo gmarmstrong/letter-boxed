@@ -24,9 +24,7 @@ data class Puzzle(val edges: Set<Set<Char>>) {
     constructor(input: String) : this(parseEdges(input))
 
     // Define Puzzle equality by equality of edges.
-    override fun equals(other: Any?): Boolean {
-        return other is Puzzle && other.edges == edges
-    }
+    override fun equals(other: Any?): Boolean = other is Puzzle && other.edges == edges
 
     // Define Puzzle hashCode by hashCode of edges.
     override fun hashCode(): Int = edges.hashCode()

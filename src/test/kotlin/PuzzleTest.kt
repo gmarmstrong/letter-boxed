@@ -13,7 +13,7 @@ internal class PuzzleTest {
     }
 
     @Test
-    fun testEdges() {
+    fun `test edges`() {
         val edges = puzzle.edges
         assertEquals(edges.size, 4, "Puzzle should have 4 edges")
         assertContains(edges, setOf('A', 'B', 'C'), "Puzzle should have edge ABC")
@@ -23,25 +23,25 @@ internal class PuzzleTest {
     }
 
     @Test
-    fun testLetters() {
+    fun `test letters`() {
         val expected = "ABCDEFGHIJKL".toSet()
         assertEquals(puzzle.letters, expected, "Puzzle should have letters A through L")
     }
 
     @Test
-    fun testEquals() {
+    fun `test equals`() {
         val puzzle2 = Puzzle("ABC,DEF,GHI,JKL")
         assertEquals(puzzle, puzzle2, "Puzzles should be equal")
     }
 
     @Test
-    fun testHashCode() {
+    fun `test hashCode`() {
         val puzzle2 = Puzzle("ABC,DEF,GHI,JKL")
         assertEquals(puzzle.hashCode(), puzzle2.hashCode(), "Puzzles should have same hash code")
     }
 
     @Test
-    fun testToString() {
+    fun `test toString`() {
         val expected = "ABC,DEF,GHI,JKL"
         assertEquals(expected, puzzle.toString())
     }

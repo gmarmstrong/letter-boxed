@@ -35,7 +35,7 @@ class MainTest {
     }
 
     @Test
-    fun mainOutputTest() {
+    fun `test main output`() {
         for ((input, expected) in expectations) {
             main(input)
             val output = out.toString().trim()
@@ -45,7 +45,7 @@ class MainTest {
     }
 
     @Test
-    fun mainDuplicateEdgeTest() {
+    fun `test main duplicate edge`() {
         assertThrows(
             IllegalArgumentException::class.java,
             { main(arrayOf("ABC,ABC,ABC,ABC")) },
@@ -54,7 +54,7 @@ class MainTest {
     }
 
     @Test
-    fun mainTooManyEdgesTest() {
+    fun `test main too many edges`() {
         assertThrows(
             IllegalArgumentException::class.java,
             { main(arrayOf("ABC,DEF,GHI,JKL,MNO")) },
@@ -63,7 +63,7 @@ class MainTest {
     }
 
     @Test
-    fun mainTooFewEdgesTest() {
+    fun `test main too few edges`() {
         assertThrows(
             IllegalArgumentException::class.java,
             { main(arrayOf("ABC,DEF,GHI")) },
