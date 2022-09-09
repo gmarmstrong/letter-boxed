@@ -1,16 +1,10 @@
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 
 internal class PuzzleTest {
 
-    private lateinit var puzzle: Puzzle
-
-    @BeforeEach
-    fun setUp() {
-        puzzle = Puzzle("ABC,DEF,GHI,JKL")
-    }
+    private val puzzle = Puzzle("ABC,DEF,GHI,JKL")
 
     @Test
     fun `test edges`() {
