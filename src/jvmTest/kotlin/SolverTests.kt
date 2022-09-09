@@ -18,8 +18,13 @@ class SolverTests {
 
     @Test
     fun testIsSolution() {
-        assertTrue(solver.isSolution(listOf("uniquely", "Yogacara"), puzzle))
-        assertFalse(solver.isSolution(listOf("car", "rogue"), puzzle))
+        val qreSolution = listOf("uniquely", "Yogacara")
+        val qreBadSolution = listOf("car", "rogue")
+        with(solver) {
+            assertTrue(qreSolution solves puzzle, "QRE puzzle should be solved by $qreSolution")
+            assertFalse(qreBadSolution solves puzzle, "QRE puzzle should not be solved by $qreBadSolution")
+            assertFalse(qreSolution solves abcPuzzle, "ABC puzzle should have no solutions")
+        }
     }
 
     @Test
@@ -27,8 +32,10 @@ class SolverTests {
         val solutions = solver.solve(puzzle)
         assertTrue(solutions.isNotEmpty(), "No solutions found")
         assertTrue(solutions.contains(listOf("uniquely", "Yogacara")))
-        for (solution in solutions) {
-            assertTrue(solver.isSolution(solution, puzzle), "Not all of these solutions are valid")
+        with(solver) {
+            solutions.forEach {
+                assertTrue(it solves puzzle, "Puzzle should be solved by $it")
+            }
         }
     }
 

@@ -15,23 +15,23 @@ class Solver(wordsSource: WordsSource) {
     fun solve(puzzle: Puzzle): List<List<String>> {
         words.retainAll { isValidForPuzzle(it, puzzle) }
         val attempts = permutations(words.toList(), length = solutionSteps)
-        return attempts.filter { isSolution(it, puzzle) }
+        return attempts.filter { it solves puzzle }
     }
 
-    fun isSolution(solution: List<String>, puzzle: Puzzle): Boolean {
+    infix fun List<String>.solves(puzzle: Puzzle): Boolean {
         // Checks that the solution has the correct number of words.
-        if (solution.size != solutionSteps) {
+        if (this.size != solutionSteps) {
             return false
         }
         // Checks that only letters from the puzzle are used, and that all the letters are used at least once.
-        if (!solution.usesAlphabet(puzzle.letters)) {
+        if (!this.usesAlphabet(puzzle.letters)) {
             return false
         }
-        if (!solution.fulfillsAlphabet(puzzle.letters)) {
+        if (!this.fulfillsAlphabet(puzzle.letters)) {
             return false
         }
         // Checks that the last letter of each word is the same as the first letter of the next word.
-        for ((a, b) in solution.zipWithNext()) {
+        for ((a, b) in this.zipWithNext()) {
             if (a.last().uppercaseChar() != b.first().uppercaseChar()) {
                 return false
             }
