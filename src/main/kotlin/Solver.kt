@@ -10,10 +10,9 @@ class Solver(wordsSource: WordsSource, private val solutionSteps: Int = 2) {
         words.retainAll { isSyntacticallyValid(it) }
     }
 
-    fun solve(puzzle: Puzzle): List<List<String>> {
+    fun solve(puzzle: Puzzle): Sequence<List<String>> {
         words.retainAll { isValidForPuzzle(it, puzzle) }
-        val attempts = permutations(words.toList(), length = solutionSteps)
-        return attempts.filter { it solves puzzle }
+        return permute(words.toList(), length = solutionSteps).filter { it solves puzzle }
     }
 
     infix fun List<String>.solves(puzzle: Puzzle): Boolean {
@@ -48,20 +47,21 @@ fun String.alternatesEdges(edges: Set<Set<Char>>): Boolean {
     return true
 }
 
-/** Generates permutations of the given length for a list of items. */
-fun <T> permutations(items: List<T>, length: Int): List<List<T>> {
-    if (length == 1) {
-        return items.map { listOf(it) }
-    }
-    val result = mutableListOf<List<T>>()
-    for (i in items.indices) {
-        val item = items[i]
-        val rest = items.subList(i + 1, items.size)
-        for (permutation in permutations(rest, length - 1)) {
-            result.add(listOf(item) + permutation)
+/** Generates permutations of the given [length] for a [list] of items. */
+fun <T> permute(list: List<T>, length: Int): Sequence<List<T>> {
+    return if (length == 1) {
+        list.asSequence().map { listOf(it) }
+    } else {
+        sequence {
+            for (i in list.indices) {
+                val head = list[i]
+                val tail = list.subList(i + 1, list.size)
+                for (perm in permute(tail, length - 1)) {
+                    yield(listOf(head) + perm)
+                }
+            }
         }
     }
-    return result
 }
 
 /** Checks that a string only uses characters from a set of characters. */

@@ -1,8 +1,8 @@
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import java.util.function.BooleanSupplier
 import kotlin.test.assertContains
 
 class SolverTests {
@@ -76,11 +76,19 @@ class SolverTests {
     }
 
     @Test
-    @Disabled("Fails (slowly) with OutOfMemoryError")
     fun testSolverThreeSteps() {
         val puzzle = Puzzle("QRE,LOU,IAY,CNG")
         val threeSolver = Solver(wordSource, 3)
         val solutions = threeSolver.solve(puzzle)
+        solutions.forEach(::println)
         assertTrue(solutions.isNotEmpty())
     }
+}
+
+private fun <T> Sequence<T>.isEmpty(): BooleanSupplier {
+    return BooleanSupplier { !iterator().hasNext() }
+}
+
+private fun <T> Sequence<T>.isNotEmpty(): BooleanSupplier {
+    return BooleanSupplier { iterator().hasNext() }
 }
