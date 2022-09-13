@@ -12,7 +12,9 @@ data class Puzzle(val edges: Set<Set<Char>>) {
     init {
         require(edges.size == 4) { "Puzzle must have exactly 4 unique edges" }
         require(edges.all { it.size == 3 }) { "Each edge must be exactly 3 unique characters" }
-        require(edges.all { edge -> edge.all { it in 'A'..'Z' } }) { "Each edge must contain only uppercase ASCII letters" }
+        require(
+            edges.all { edge -> edge.all { it in 'A'..'Z' } }
+        ) { "Each edge must contain only uppercase ASCII letters" }
         require(edges.flatten().toSet().size == 12) { "Puzzle must consist of exactly 12 unique characters" }
     }
 
