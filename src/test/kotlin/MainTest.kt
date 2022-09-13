@@ -23,7 +23,7 @@ class MainTest {
             [virilize, Ethiopian]
             [heliozoan, nonrepetitive]
             [perihelion, novelization]
-        """.trimIndent(),
+        """.trimIndent()
     )
 
     private lateinit var out: ByteArrayOutputStream

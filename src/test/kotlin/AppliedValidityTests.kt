@@ -21,5 +21,4 @@ class AppliedValidityTests {
 
     @Test
     fun `test applied validity unusable letter`() = Assertions.assertFalse(isValidForPuzzle("RECOGNIZE", abcPuzzle))
-
 }

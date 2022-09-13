@@ -17,9 +17,9 @@ class Solver(wordsSource: WordsSource, private val solutionSteps: Int = 2) {
 
     infix fun List<String>.solves(puzzle: Puzzle): Boolean {
         return size == solutionSteps &&
-                usesAlphabet(puzzle.letters) &&
-                fulfillsAlphabet(puzzle.letters) &&
-                lettersConnected()
+            usesAlphabet(puzzle.letters) &&
+            fulfillsAlphabet(puzzle.letters) &&
+            lettersConnected()
     }
 }
 

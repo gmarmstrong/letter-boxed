@@ -31,7 +31,6 @@ data class Puzzle(val edges: Set<Set<Char>>) {
 
     // Define Puzzle toString by concatenating edges.
     override fun toString(): String = edges.joinToString(separator = ",") { edge -> edge.joinToString(separator = "") }
-
 }
 
 /**
