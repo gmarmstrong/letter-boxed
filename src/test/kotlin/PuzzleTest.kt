@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 
@@ -38,5 +39,57 @@ internal class PuzzleTest {
     fun `test toString`() {
         val expected = "ABC,DEF,GHI,JKL"
         assertEquals(expected, puzzle.toString())
+    }
+
+    @Test
+    fun `test require edges per puzzle`() {
+        require(EDGES_PER_PUZZLE == 4) { "This test assumes 4 edges per puzzle" }
+        assertThrows<IllegalArgumentException> {
+            Puzzle("ABC,DEF,GHI")
+        }
+    }
+
+    @Test
+    fun `test require letters per edge`() {
+        require(LETTERS_PER_EDGE == 3) { "This test assumes 3 letters per edge" }
+        assertThrows<IllegalArgumentException> {
+            Puzzle("ABC,DE,FGH,IJK")
+        }
+    }
+
+    @Test
+    fun `test require letters per puzzle`() {
+        require(EDGES_PER_PUZZLE * LETTERS_PER_EDGE == 12) { "This test assumes 12 letters per puzzle" }
+        assertThrows<IllegalArgumentException> {
+            Puzzle("ABC,ABD,EFG,HIJ")
+        }
+    }
+
+    @Test
+    fun `test require ASCII letters`() {
+        assertThrows<IllegalArgumentException> {
+            Puzzle(
+                setOf(
+                    setOf('A', 'B', 'C'),
+                    setOf('D', '?', 'F'),
+                    setOf('G', 'H', 'I'),
+                    setOf('J', 'K', 'L')
+                )
+            )
+        }
+    }
+
+    @Test
+    fun `test require ASCII letters uppercase`() {
+        assertThrows<IllegalArgumentException> {
+            Puzzle(
+                setOf(
+                    setOf('A', 'B', 'C'),
+                    setOf('D', 'e', 'F'),
+                    setOf('G', 'H', 'I'),
+                    setOf('J', 'K', 'L')
+                )
+            )
+        }
     }
 }
