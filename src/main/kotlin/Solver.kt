@@ -71,7 +71,8 @@ fun String.usesAlphabet(chars: Set<Char>): Boolean = this.all { it.uppercaseChar
 private fun List<String>.usesAlphabet(chars: Set<Char>): Boolean = this.all { it.usesAlphabet(chars) }
 
 /** Checks that a list of strings uses every character from a set of characters at least once. */
-private fun List<String>.fulfillsAlphabet(chars: Set<Char>): Boolean = chars.all { it.uppercaseChar() in this.joinToString("").uppercase() }
+private fun List<String>.fulfillsAlphabet(chars: Set<Char>): Boolean =
+    chars.all { it.uppercaseChar() in this.joinToString("").uppercase() }
 
 /**
  * Checks if a word is syntactically valid. That is, that the word is at least three characters long,
