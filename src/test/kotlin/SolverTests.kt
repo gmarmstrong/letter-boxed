@@ -10,7 +10,7 @@ class SolverTests {
     private val abcPuzzle = Puzzle("ABC,DEF,GHI,JKL")
     private val qreSolution = listOf("uniquely", "Yogacara")
     private val qreBadSolution = listOf("car", "rogue")
-    private val wordSource = WordsSourceImpl()
+    private val wordSource = JvmWordsProvider()
     private val solver = Solver(wordSource)
 
     @Test
@@ -62,11 +62,7 @@ class SolverTests {
      */
     @Test
     fun `test solver one step equal ends`() {
-        val customWordSource = object : WordsSource() {
-            override fun getWords(): MutableSet<String> {
-                return mutableSetOf("abcdefghijkla")
-            }
-        }
+        val customWordSource = WordsProvider { mutableSetOf("abcdefghijkla") }
         val puzzle = Puzzle("AEI,BFJ,CGK,DHL")
         val oneSolver = Solver(customWordSource, 1)
         val solutions = oneSolver.solve(puzzle)

@@ -3,10 +3,10 @@ import kotlin.test.Test
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
-class WordsSourceImplTests {
+class JvmWordsProviderTests {
     @Test
     fun `test getWords`() {
-        val wordsSource = WordsSourceImpl()
+        val wordsSource = JvmWordsProvider()
         val words = wordsSource.getWords()
         assertTrue(words.size > 100, "WordsSource should return more than 100 words")
         assertTrue(words.contains("hello"), """Strings should include "hello"""")
@@ -17,7 +17,7 @@ class WordsSourceImplTests {
     fun `test missing file`() {
         check(!File("missing.txt").exists()) { "File missing.txt should not exist. This unit test will not be valid." }
         assertFailsWith<IllegalStateException> {
-            WordsSourceImpl("missing.txt")
+            JvmWordsProvider("missing.txt")
         }
     }
 }
