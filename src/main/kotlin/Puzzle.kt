@@ -1,3 +1,6 @@
+const val EDGES_PER_PUZZLE = 4
+const val LETTERS_PER_EDGE = 3
+
 /**
  * Represents a Letter Boxed puzzle configuration.
  */
@@ -10,12 +13,14 @@ data class Puzzle(val edges: Set<Set<Char>>) {
      * Constructs a puzzle from a set of 4 edges (sets of 3 uppercase ASCII characters).
      */
     init {
-        require(edges.size == 4) { "Puzzle must have exactly 4 unique edges" }
-        require(edges.all { it.size == 3 }) { "Each edge must be exactly 3 unique characters" }
+        require(edges.size == EDGES_PER_PUZZLE) { "Puzzle must have exactly 4 unique edges" }
+        require(edges.all { it.size == LETTERS_PER_EDGE }) { "Each edge must be exactly 3 unique characters" }
         require(
             edges.all { edge -> edge.all { it in 'A'..'Z' } }
         ) { "Each edge must contain only uppercase ASCII letters" }
-        require(edges.flatten().toSet().size == 12) { "Puzzle must consist of exactly 12 unique characters" }
+        require(
+            edges.flatten().toSet().size == EDGES_PER_PUZZLE * LETTERS_PER_EDGE
+        ) { "Puzzle must consist of exactly 12 unique characters" }
     }
 
     /**

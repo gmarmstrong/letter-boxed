@@ -2,17 +2,17 @@ import java.io.File
 import java.net.URL
 
 /**
- * JVM implementation of [WordsSource].
+ * JVM implementation of [WordsProvider].
  *
  * @param[resourceName] Name of the resource to read line-by-line from.
  */
-class WordsSourceImpl(private val resourceName: String = "words.txt") : WordsSource() {
+class JvmWordsProvider(private val resourceName: String = "words.txt") : WordsProvider {
 
     private val file: File
 
     init {
-        val resourceURL: URL = WordsSourceImpl::class.java.getResource(resourceName)
-            ?: throw IllegalStateException("Could not get resource '$resourceName'")
+        val resourceURL: URL = JvmWordsProvider::class.java.getResource(resourceName)
+            ?: error("Could not get resource $resourceName")
         val resourcePath = resourceURL.path
         file = File(resourcePath)
     }
