@@ -11,15 +11,15 @@ class AppliedValidityTests {
     private val abcPuzzle = Puzzle(abcSeed)
 
     @Test
-    fun testAppliedValidityCorrect() = Assertions.assertTrue(isValidForPuzzle("KALE", abcPuzzle))
+    fun `test applied validity correct`() = Assertions.assertTrue(isValidForPuzzle("KALE", abcPuzzle))
 
     @Test
-    fun testAppliedValidityIgnoreCase() = Assertions.assertTrue(isValidForPuzzle("kaLE", abcPuzzle))
+    fun `test applied validity ignore case`() = Assertions.assertTrue(isValidForPuzzle("kaLE", abcPuzzle))
 
     @Test
-    fun testAppliedValidityRepeatsEdge() = Assertions.assertFalse(isValidForPuzzle("BAKE", abcPuzzle))
+    fun `test applied validity repeats edge`() = Assertions.assertFalse(isValidForPuzzle("BAKE", abcPuzzle))
 
     @Test
-    fun testAppliedValidityUnusableLetter() = Assertions.assertFalse(isValidForPuzzle("RECOGNIZE", abcPuzzle))
+    fun `test applied validity unusable letter`() = Assertions.assertFalse(isValidForPuzzle("RECOGNIZE", abcPuzzle))
 
 }

@@ -14,22 +14,22 @@ class SolverTests {
     private val solver = Solver(wordSource)
 
     @Test
-    fun testSolvesQre() = with(solver) {
+    fun `test solves qre`() = with(solver) {
         assertTrue(qreSolution solves puzzle, "QRE puzzle should be solved by $qreSolution")
     }
 
     @Test
-    fun testNotSolvesQre() = with(solver) {
+    fun `test not solves qre`() = with(solver) {
         assertFalse(qreBadSolution solves puzzle, "QRE puzzle should not be solved by $qreBadSolution")
     }
 
     @Test
-    fun testNotSolvesAbc() = with(solver) {
+    fun `test not solves abc`() = with(solver) {
         assertFalse(qreSolution solves abcPuzzle, "ABC puzzle should not be solved by $qreSolution")
     }
 
     @Test
-    fun testQreSolutions() {
+    fun `test qre solutions`() {
         val qreSolutions = solver.solve(puzzle)
         assertTrue(qreSolutions.isNotEmpty(), "QRE puzzle should have solutions")
         assertContains(qreSolutions, qreSolution, "QRE puzzle should have solution $qreSolution")
@@ -41,13 +41,13 @@ class SolverTests {
     }
 
     @Test
-    fun testSolverSolveImpossible() {
+    fun `test solver solve impossible`() {
         val abcSolutions = solver.solve(abcPuzzle)
         assertTrue(abcSolutions.isEmpty(), "ABC puzzle should have no solutions")
     }
 
     @Test
-    fun testSolverOneStep() {
+    fun `test solver one step`() {
         // Shuffle any 12-letter heterogram: https://en.wikipedia.org/wiki/Heterogram_(literature)#12_letters
         val puzzle = Puzzle("ADR,MEO,BXU,ITS")
         val oneSolver = Solver(wordSource, 1)
@@ -61,7 +61,7 @@ class SolverTests {
      * edge case of [alternatesEdges] implementations.
      */
     @Test
-    fun testSolverOneStepEqualEnds() {
+    fun `test solver one step equal ends`() {
         val customWordSource = object : WordsSource() {
             override fun getWords(): MutableSet<String> {
                 return mutableSetOf("abcdefghijkla")
@@ -74,7 +74,7 @@ class SolverTests {
     }
 
     @Test
-    fun testSolverThreeSteps() {
+    fun `test solver three steps`() {
         val puzzle = Puzzle("QRE,LOU,IAY,CNG")
         val threeSolver = Solver(wordSource, 3)
         val solutions = threeSolver.solve(puzzle)
