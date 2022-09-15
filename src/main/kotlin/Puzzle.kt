@@ -28,7 +28,7 @@ data class Puzzle(val edges: Set<Set<Char>>) {
      *
      * @throws IllegalArgumentException if the string is not a valid puzzle.
      */
-    constructor(input: String) : this(parseEdges(input))
+    constructor(input: String) : this(parseEdges(input.uppercase()))
 
     // Define Puzzle equality by equality of edges.
     override fun equals(other: Any?): Boolean = other is Puzzle && other.edges == edges
@@ -42,13 +42,11 @@ data class Puzzle(val edges: Set<Set<Char>>) {
 
 /**
  * Parses a string of comma-separated edges into a set of sets of characters.
- * Also converts all letters to uppercase (Turkish-I problem avoided by the requirement of uppercase ASCII letters).
  *
  * For example, "ABC,DEF,GHI,JKL" becomes { {'A', 'B', 'C'}, {'D', 'E', 'F'}, {'G', 'H', 'I'}, {'J', 'K', 'L'} }.
  */
 private fun parseEdges(input: String): Set<Set<Char>> {
     return input
-        .uppercase()
         .split(",")
         .map { it.toSet() }
         .toSet()
