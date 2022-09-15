@@ -50,21 +50,21 @@ fun String.alternatesEdges(edges: Set<Set<Char>>): Boolean {
 }
 
 /** Generates permutations of the given [length] for a [list] of items. */
-fun <T> permute(list: List<T>, length: Int): Sequence<List<T>> {
-    return if (length == 1) {
-        list.asSequence().map { listOf(it) }
-    } else {
-        sequence {
-            for (i in list.indices) {
-                val head = list[i]
-                val tail = list.subList(i + 1, list.size)
-                for (perm in permute(tail, length - 1)) {
-                    yield(listOf(head) + perm)
+fun <T> permute(list: List<T>, length: Int): Sequence<List<T>> =
+    // Generate a sequence of the yielded lists
+    sequence {
+        if (length == 1) { // base case
+            for (item in list) {
+                yield(listOf(item))
+            }
+        } else { // recursive case
+            list.forEach { item ->
+                permute(list, length - 1).forEach { perm ->
+                    yield(listOf(item) + perm)
                 }
             }
         }
     }
-}
 
 /** Checks that a string only uses characters from a set of characters. */
 fun String.usesAlphabet(chars: Set<Char>): Boolean = this.all { it.uppercaseChar() in chars }

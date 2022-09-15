@@ -11,8 +11,16 @@ import java.io.PrintStream
 class MainTest {
     /* Puzzles and their expected outputs. */
     private val expectations = mapOf(
-        arrayOf("RME,WCL,KGT,IPA") to "[wigwam, marketplace]",
-        arrayOf("LWC,GTK,ERM,PIA") to "[wigwam, marketplace]",
+        arrayOf("RME,WCL,KGT,IPA") to """
+            [wigwam, marketplace]
+            [pragmatic, cakewalk]
+            [marketplace, earwig]
+        """.trimIndent(),
+        arrayOf("LWC,GTK,ERM,PIA") to """
+            [wigwam, marketplace]
+            [pragmatic, cakewalk]
+            [marketplace, earwig]
+        """.trimIndent(),
         arrayOf("BGY,ULN,MIS,TOK") to "[yolks, stumbling]",
         arrayOf("ABC,DEF,GHI,JKL") to "",
         arrayOf("RAP,TZV,INE,OLH") to """
@@ -23,6 +31,12 @@ class MainTest {
             [virilize, Ethiopian]
             [heliozoan, nonrepetitive]
             [perihelion, novelization]
+            [relativize, Ethiopian]
+            [revitalize, Ethiopian]
+            [trivialize, Ethiopian]
+            [novelization, Northrop]
+            [nonrepetitive, etherealize]
+            [revitalization, Northrop]
         """.trimIndent()
     )
 
