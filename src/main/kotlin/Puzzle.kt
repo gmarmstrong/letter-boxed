@@ -43,7 +43,8 @@ data class Puzzle(val edges: Set<Set<Char>>) {
         /**
          * Parses a string of comma-separated edges into a set of sets of characters.
          *
-         * For example, "ABC,DEF,GHI,JKL" becomes { {'A', 'B', 'C'}, {'D', 'E', 'F'}, {'G', 'H', 'I'}, {'J', 'K', 'L'} }.
+         * For example, "ABC,DEF,GHI,JKL" becomes
+         * { {'A', 'B', 'C'}, {'D', 'E', 'F'}, {'G', 'H', 'I'}, {'J', 'K', 'L'} }.
          */
         private fun parseEdges(input: String): Set<Set<Char>> = input
             .split(",")
