@@ -378,7 +378,7 @@ performance:
   ArrayPrimitive:
     active: true
   CouldBeSequence:
-    active: false
+    active: true
     threshold: 3
   ForEachOnRange:
     active: true
