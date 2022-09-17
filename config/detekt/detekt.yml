@@ -236,7 +236,7 @@ exceptions:
   NotImplementedDeclaration:
     active: false
   ObjectExtendsThrowable:
-    active: false
+    active: true
   PrintStackTrace:
     active: true
   RethrowCaughtException:
@@ -255,7 +255,7 @@ exceptions:
   ThrowingExceptionFromFinally:
     active: true
   ThrowingExceptionInMain:
-    active: false
+    active: true
   ThrowingExceptionsWithoutMessageOrCause:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
