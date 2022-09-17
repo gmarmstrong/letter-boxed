@@ -78,10 +78,8 @@ class SolverTests {
     }
 }
 
-private fun <T> Sequence<T>.isEmpty(): BooleanSupplier {
-    return BooleanSupplier { !iterator().hasNext() }
-}
+private fun <T> Sequence<T>.isEmpty(): BooleanSupplier =
+    BooleanSupplier { !iterator().hasNext() }
 
-private fun <T> Sequence<T>.isNotEmpty(): BooleanSupplier {
-    return BooleanSupplier { iterator().hasNext() }
-}
+private fun <T> Sequence<T>.isNotEmpty(): BooleanSupplier =
+    BooleanSupplier { iterator().hasNext() }
