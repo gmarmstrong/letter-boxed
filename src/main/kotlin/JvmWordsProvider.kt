@@ -4,7 +4,7 @@ import java.net.URL
 /**
  * JVM implementation of [WordsProvider].
  *
- * @param[resourceName] Name of the resource to read line-by-line from.
+ * @property[resourceName] Name of the resource to read line-by-line from.
  */
 class JvmWordsProvider(private val resourceName: String = "words.txt") : WordsProvider {
 
