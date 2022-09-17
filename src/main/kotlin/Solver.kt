@@ -12,11 +12,19 @@ class Solver(wordsProvider: WordsProvider, private val solutionSteps: Int = 2) {
         words.retainAll { isSyntacticallyValid(it) }
     }
 
+    /**
+     * Returns a sequence of all possible puzzle solutions
+     * which use exactly [solutionSteps] words.
+     */
     fun solve(puzzle: Puzzle): Sequence<List<String>> {
         words.retainAll { isValidForPuzzle(it, puzzle) }
         return permute(words.toList(), length = solutionSteps).filter { it solves puzzle }
     }
 
+    /**
+     * Determines if a list of words are a solution to the puzzle.
+     * Does not check
+     */
     infix fun List<String>.solves(puzzle: Puzzle): Boolean {
         return size == solutionSteps &&
             usesAlphabet(puzzle.letters) &&
