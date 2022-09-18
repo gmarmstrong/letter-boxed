@@ -1,3 +1,5 @@
+package letterboxed
+
 const val EDGES_PER_PUZZLE = 4
 const val LETTERS_PER_EDGE = 3
 

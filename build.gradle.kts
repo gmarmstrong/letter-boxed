@@ -34,7 +34,7 @@ tasks.test {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("letterboxed.MainKt")
 }
 
 tasks.withType<KotlinCompile> {

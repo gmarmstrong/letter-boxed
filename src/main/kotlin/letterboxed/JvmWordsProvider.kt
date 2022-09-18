@@ -1,3 +1,5 @@
+package letterboxed
+
 import java.io.File
 import java.net.URL
 
@@ -11,7 +13,7 @@ class JvmWordsProvider(private val resourceName: String = "words.txt") : WordsPr
     private val file: File
 
     init {
-        val resourceURL: URL = JvmWordsProvider::class.java.getResource(resourceName)
+        val resourceURL: URL = JvmWordsProvider::class.java.classLoader.getResource(resourceName)
             ?: error("Could not get resource $resourceName")
         val resourcePath = resourceURL.path
         file = File(resourcePath)

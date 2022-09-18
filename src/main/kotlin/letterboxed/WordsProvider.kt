@@ -1,3 +1,5 @@
+package letterboxed
+
 /**
  * Functional (SAM) interface for a WordsSource.
  */
