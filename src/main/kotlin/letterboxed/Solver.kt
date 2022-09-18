@@ -1,5 +1,7 @@
 package letterboxed
 
+import util.zigzagsOver
+
 const val MIN_WORD_LENGTH = 3
 
 /**
@@ -44,17 +46,13 @@ fun List<String>.lettersConnected(): Boolean {
     return true
 }
 
-/** Checks that each character in a string is on a different edge than the previous character. */
-fun String.alternatesEdges(edges: Set<Set<Char>>): Boolean {
-    for ((first, second) in this.zipWithNext()) {
-        val firstEdge = edges.find { it.contains(first.uppercaseChar()) }
-        val secondEdge = edges.find { it.contains(second.uppercaseChar()) }
-        if (firstEdge == secondEdge) {
-            return false
-        }
-    }
-    return true
-}
+/**
+ * Checks that each character in a string is on a different edge than the previous character.
+ *
+ * Assumes that all the string's characters are present in the edges.
+ */
+fun String.alternatesEdges(edges: Set<Set<Char>>): Boolean =
+    uppercase().toList().zigzagsOver(edges)
 
 /** Generates permutations of the given [length] for a [list] of items. */
 fun <T> permute(list: List<T>, length: Int): Sequence<List<T>> =
