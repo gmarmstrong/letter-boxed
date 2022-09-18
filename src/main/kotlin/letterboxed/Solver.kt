@@ -1,3 +1,5 @@
+package letterboxed
+
 const val MIN_WORD_LENGTH = 3
 
 /**
@@ -21,10 +23,7 @@ class Solver(wordsProvider: WordsProvider, private val solutionSteps: Int = 2) {
         return permute(words.toList(), length = solutionSteps).filter { it solves puzzle }
     }
 
-    /**
-     * Determines if a list of words are a solution to the puzzle.
-     * Does not check
-     */
+    /** Determines if this list of words is a solution to [puzzle]. */
     infix fun List<String>.solves(puzzle: Puzzle): Boolean {
         return size == solutionSteps &&
             usesAlphabet(puzzle.letters) &&

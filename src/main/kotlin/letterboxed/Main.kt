@@ -1,3 +1,7 @@
+import letterboxed.JvmWordsProvider
+import letterboxed.Puzzle
+import letterboxed.Solver
+
 /** Entry point for the application. */
 fun main(args: Array<String>) {
     val solver = Solver(JvmWordsProvider())
